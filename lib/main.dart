@@ -533,6 +533,7 @@ class _PianoHomePageState extends State<PianoHomePage> with TickerProviderStateM
       return;
     }
     final parsed = MidiFileParser.parse(bytes);
+    if (parsed.notes.isEmpty) {
         setState(() => _status = 'В MIDI-файле не найдены ноты');
         return;
       }
