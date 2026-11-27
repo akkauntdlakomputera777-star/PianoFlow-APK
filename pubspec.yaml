@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   record: ^6.1.2
-  file_picker: ^8.1.7
+  file_picker: ^13.4.1
   flutter_midi_command: ^1.4.0
   flutter_midi_command_ble: ^1.4.0
 
