@@ -521,7 +521,7 @@ class _PianoHomePageState extends State<PianoHomePage> with TickerProviderStateM
 
   Future<void> _importMidiFile() async {
     try {
-      final result = await FilePicker.platform.pickFiles(
+      final result = await FilePicker.pickFiles(
         type: FileType.custom, allowedExtensions: ['mid', 'midi'], withData: true);
       if (result == null || result.files.isEmpty) return;
       final file = result.files.single;
@@ -552,7 +552,7 @@ class _PianoHomePageState extends State<PianoHomePage> with TickerProviderStateM
   }
 
   Future<void> _selectAudioFile() async {
-    final result = await FilePicker.platform.pickFiles(
+    final result = await FilePicker.pickFiles(
       type: FileType.custom, allowedExtensions: ['mp3', 'wav', 'm4a', 'aac', 'flac']);
     if (result == null || result.files.isEmpty) return;
     final file = result.files.single;
@@ -623,7 +623,7 @@ class _PianoHomePageState extends State<PianoHomePage> with TickerProviderStateM
               if (_connectedMidi != null)
                 TextButton.icon(
                   onPressed: () async {
-                    try { await _midi.disconnectDevice(_connectedMidi!); } catch (_) {}
+                    try {_midi.disconnectDevice(_connectedMidi!); } catch (_) {}
                     if (mounted) setState(() { _connectedMidi = null; _status = 'MIDI отключён'; });
                     if (sheetContext.mounted) Navigator.pop(sheetContext);
                   },
