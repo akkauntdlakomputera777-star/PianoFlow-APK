@@ -522,7 +522,7 @@ class _PianoHomePageState extends State<PianoHomePage> with TickerProviderStateM
   Future<void> _importMidiFile() async {
     try {
       final result = await FilePicker.pickFiles(
-        type: FileType.custom, allowedExtensions: ['mid', 'midi'], withData: true);
+        type: FileType.custom, allowedExtensions: ['mid', 'midi']);
       if (result == null || result.files.isEmpty) return;
       final file = result.files.single;
       final bytes = file.bytes;
@@ -554,8 +554,8 @@ class _PianoHomePageState extends State<PianoHomePage> with TickerProviderStateM
   Future<void> _selectAudioFile() async {
     final result = await FilePicker.pickFiles(
       type: FileType.custom, allowedExtensions: ['mp3', 'wav', 'm4a', 'aac', 'flac']);
-    if (result == null || result.files.isEmpty) return;
-    final file = result.files.single;
+    if (result.isEmpty) return;
+    final file = result.single;
     setState(() => _status = 'Аудио выбрано: ${file.name}. Для извлечения нот нужен сервер транскрипции.');
     if (mounted) {
       showDialog(context: context, builder: (_) => AlertDialog(
