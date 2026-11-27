@@ -29,8 +29,10 @@ jobs:
         run: flutter pub get
 
       - name: Build Android APK
-        run: flutter build apk --release
-
+        run: |
+          flutter create --platforms=android .
+          flutter build apk --release
+          
       - name: Save APK
         uses: actions/upload-artifact@v4
         with:
