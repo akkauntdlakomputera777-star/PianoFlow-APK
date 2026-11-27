@@ -522,9 +522,11 @@ class _PianoHomePageState extends State<PianoHomePage> with TickerProviderStateM
   Future<void> _importMidiFile() async {
     try {
       final result = await FilePicker.pickFiles(
-        type: FileType.custom, allowedExtensions: ['mid', 'midi']);
-      if (result == null || result.files.isEmpty) return;
-      final file = result.files.single;
+        type: FileType.custom, 
+        allowedExtensions: ['mid', 'midi'],
+        );
+      if (result.isEmpty) return;
+      final file = result.single;
       final bytes = file.bytes;
       if (bytes == null) {
         setState(() => _status = 'Не удалось прочитать MIDI-файл');
